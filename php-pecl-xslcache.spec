@@ -13,7 +13,7 @@ Group:		Development/Languages/PHP
 Source0:	http://pecl.php.net/get/%{modname}-%{version}.tgz
 # Source0-md5:	1e32327f62122055ece6f78fa2b851b2
 URL:		http://pecl.php.net/package/xslcache
-BuildRequires:	libxslt
+BuildRequires:	libxslt-devel >= 1.1.0
 BuildRequires:	php-devel >= 3:5.0.0
 BuildRequires:	rpmbuild(macros) >= 1.519
 %{?requires_php_extension}
@@ -29,8 +29,6 @@ could be done on the extension, this code is already proving
 beneficial in production use for a few applications on the New York
 Times' website.
 
-#%description -l pl.UTF-8
-
 %prep
 %setup -q -c
 mv %{modname}-%{version}/* .
@@ -43,10 +41,7 @@ phpize
 %{__make}
 
 %install
-rm -rf $RPM_BUILD_ROOT
-#install -d $RPM_BUILD_ROOT%{php_sysconfdir}/conf.d
 install -d $RPM_BUILD_ROOT{%{php_sysconfdir}/conf.d,%{php_extensiondir}}
-#install -d $RPM_BUILD_ROOT{%{php_sysconfdir}/conf.d,%{php_extensiondir}}
 
 %{__make} install \
 	INSTALL_ROOT=$RPM_BUILD_ROOT \
@@ -55,8 +50,6 @@ cat <<'EOF' > $RPM_BUILD_ROOT%{php_sysconfdir}/conf.d/%{modname}.ini
 ; Enable %{modname} extension module
 extension=%{modname}.so
 EOF
-
-#cp -a examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -71,7 +64,6 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc CREDITS EXPERIMENTAL
+%doc CREDITS
 %config(noreplace) %verify(not md5 mtime size) %{php_sysconfdir}/conf.d/%{modname}.ini
 %attr(755,root,root) %{php_extensiondir}/%{modname}.so
-#%{_examplesdir}/%{name}-%{version}
