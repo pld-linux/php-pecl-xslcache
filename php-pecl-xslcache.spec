@@ -41,6 +41,7 @@ phpize
 %{__make}
 
 %install
+rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{php_sysconfdir}/conf.d,%{php_extensiondir}}
 
 %{__make} install \
