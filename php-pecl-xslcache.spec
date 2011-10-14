@@ -1,7 +1,3 @@
-#
-# Conditional build:
-%bcond_without	tests		# build without tests
-
 %define		modname	xslcache
 Summary:	%{modname} - A modification of PHP's standard XSL extension that caches the parsed XSL stylesheet representation
 Summary(pl.UTF-8):	%{modname} - modyfikacja standardowego rozszerzenia XSL PHP, które buforuje przetworzone reprezentacje arkuszów stylów XSL
