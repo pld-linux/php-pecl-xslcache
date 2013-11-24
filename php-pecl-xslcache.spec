@@ -4,17 +4,18 @@ Summary:	%{modname} - A modification of PHP's standard XSL extension that caches
 Summary(pl.UTF-8):	%{modname} - modyfikacja standardowego rozszerzenia XSL PHP, które buforuje przetworzone reprezentacje arkuszów stylów XSL
 Name:		%{php_name}-pecl-%{modname}
 Version:	0.7.2
-Release:	1
+Release:	2
 License:	PHP 3.01
 Group:		Development/Languages/PHP
 Source0:	http://pecl.php.net/get/%{modname}-%{version}.tgz
 # Source0-md5:	8c8570503baf7c9711f2d7bf842c292d
 URL:		http://pecl.php.net/package/xslcache
-BuildRequires:	libxslt-devel >= 1.1.0
 BuildRequires:	%{php_name}-devel >= 3:5.0.0
+BuildRequires:	libxslt-devel >= 1.1.0
 BuildRequires:	rpmbuild(macros) >= 1.650
 %{?requires_php_extension}
 Requires:	php(core) >= 5.0.4
+Provides:	php(%{modname}) = %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
